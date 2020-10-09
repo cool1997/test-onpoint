@@ -7,17 +7,17 @@ export const Navbar = ({ current = 0, changeSlide, ...props }) => {
 	return (
 		<nav className={`${styles.Navbar}`}>
 			<button 
-				className={`${item}`} 
+				className={`${styles.item}`} 
 				id={`0`} 
 				onClick={changeSlide} 
 				style={{background: (current == 0) ? '#f78b1f': '#fff'}}/>
 			<button 
-				className={`${item}`} 
+				className={`${styles.item}`} 
 				id={`1`} 
 				onClick={changeSlide} 
 				style={{background: (current == 1) ? '#f78b1f': '#fff'}}/>
 			<button 
-				className={`${item}`} 
+				className={`${styles.item}`} 
 				id={`2`} 
 				onClick={changeSlide} 
 				style={{background: (current == 2) ? '#f78b1f': '#fff'}}/>

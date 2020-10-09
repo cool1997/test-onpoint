@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './SecondSlide.module.scss'
 import { IceBrick } from '../IceBrick/IceBrick'
 
-const SecondSlide = ({ ...props }) => {
+export const SecondSlide = ({ ...props }) => {
   return (
     <div className={`${styles.secondSlide} ${styles.horizontalSlide}`}>
       <div className={`${styles.secondSlideTitle}`}>
@@ -16,5 +16,3 @@ const SecondSlide = ({ ...props }) => {
     </div>
   )
 }
-
-export default SecondSlide

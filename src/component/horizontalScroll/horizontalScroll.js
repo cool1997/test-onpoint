@@ -1,4 +1,4 @@
-const horizontalScroll = () => {
+export const horizontalScroll = () => {
   const options = {
     container: '.slides-wrapper',
     section: '.horizontal-slide',
@@ -93,5 +93,3 @@ const horizontalScroll = () => {
     moveLeft, moveRight, moveTo
   }
 }
-
-export default horizontalScroll;

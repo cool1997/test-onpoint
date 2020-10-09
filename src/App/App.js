@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
+// import { Route, Switch } from 'react-router-dom'
 
 import styles from './App.module.scss'
 import { Navbar } from '../component/Navbar/Navbar'
@@ -8,7 +8,7 @@ import { SecondBlock } from '../component/SecondBlock/SecondBlock'
 import { ThirdBlock } from '../component/ThirdBlock/ThirdBlock'
 
 
-export default App = ({ ...props }) => {
+const App = ({ ...props }) => {
 	const [current, setCurrent] = useState(0)
 	// const [translateLayer, setTranslateLayer] = useState(false)
 	const [startTouchY, setStartTouchY] = useState(null)
@@ -24,7 +24,7 @@ export default App = ({ ...props }) => {
 			if(startTouchY - EndTouchY > 50 && current <= 1) {
 				setCurrent((prev) => ++prev)
 			}
-			if(startTouchY - EndTouchY < -50 && state.current >= 1) {
+			if(startTouchY - EndTouchY < -50 && current >= 1) {
 				setCurrent((prev) => --prev)
 			}
 			// setTranslateLayer(true)
@@ -73,3 +73,6 @@ export default App = ({ ...props }) => {
 		</div>
 	)
 }
+
+
+export default App
