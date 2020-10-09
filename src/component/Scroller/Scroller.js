@@ -1,77 +1,77 @@
-import React, { Component } from 'react';
-import './Scroller.css';
+import React, { useState } from 'react'
 
-class Scroller extends Component {
-  state = {
-    position: 0,
-    startPos: 0,
-    endPos: 588,
-    centerPos: 296,
-    touchEnd: false
+import styles from './Scroller.module.scss'
+
+
+export const Scroller = ({ ...props }) => {
+  const [position, setPosition] = useState(0)
+  const [startPos, setStartPos] = useState(0)
+  const [endPos, setEndPos] = useState(588)
+  const [centerPos, setCenterPos] = useState(296)
+  const [touchEnd, setTouchEnd] = useState(false)
+
+
+  const Handle = {
+    onTouchStart: (evt) => {
+      this.setState({
+        touchEnd: false,
+        startPos: evt.touches[0].clientX - this.state.position
+      })
+    },
+  
+    onTouchMove: (evt) => {
+      const { position, centerPos, endPos } = this.state
+      const relPos = evt.touches[0].clientX - this.state.startPos
+      if(relPos >= this.state.endPos || relPos <= 0 ) return
+      this.setState({
+        position: relPos
+      })
+      if(position < centerPos / 2) {
+        this.props.changeSlide(0)
+      } else if (position >= centerPos / 2 && position < endPos - ((endPos - centerPos) / 2)) {
+        this.props.changeSlide(1)
+      } else {
+        this.props.changeSlide(2)
+      }
+    },
+  
+    onTouchEnd: (evt) => {
+      const { position, centerPos, endPos } = this.state
+      this.setState({
+        touchEnd: true
+      })
+      if(position < centerPos / 2) {
+        this.setState({ position: 0 })
+      } else if (position >= centerPos / 2 && position < endPos - ((endPos - centerPos) / 2)) {
+        this.setState({ position: centerPos })
+      } else {
+        this.setState({ position: endPos })
+      }
+    },
   }
 
-  onTouchStart (e) {
-    this.setState({
-      touchEnd: false,
-      startPos: e.touches[0].clientX - this.state.position
-    })
-  }
-
-  onTouchMove (e){
-    const { position, centerPos, endPos } = this.state;
-    const relPos = e.touches[0].clientX - this.state.startPos;
-    if(relPos >= this.state.endPos || relPos <= 0 ) return
-    this.setState({
-      position: relPos
-    })
-    if(position < centerPos / 2) {
-      this.props.changeSlide(0);
-    } else if (position >= centerPos / 2 && position < endPos - ((endPos - centerPos) / 2)) {
-      this.props.changeSlide(1);
-    } else {
-      this.props.changeSlide(2);
-    }
-  }
-
-  onTouchEnd (e) {
-    const { position, centerPos, endPos } = this.state;
-    this.setState({
-      touchEnd: true
-    })
-    if(position < centerPos / 2) {
-      this.setState({ position: 0 });
-    } else if (position >= centerPos / 2 && position < endPos - ((endPos - centerPos) / 2)) {
-      this.setState({ position: centerPos });
-    } else {
-      this.setState({ position: endPos });
-    }
-  }
-
-  render() {
-    const { position } = this.state;
-    //console.log(position);
-    return (
-      <div className='scroller'>
-        <div className='scroller-line'>
-          <div className='scroller-progress' style={{width: position, transition: this.state.touchEnd ? '1s': '0s'}}></div>
-          <div  
-            className='scroller-icon' 
-            style={{transform: `translate(${this.state.position}px, -50%)`, transition: this.state.touchEnd ? '1s': '0s'}} 
-            onTouchStart={this.onTouchStart.bind(this)}
-            onTouchMove={this.onTouchMove.bind(this)}
-            onTouchEnd={this.onTouchEnd.bind(this)}
-            >
-          </div>
-        </div>
-        <div className='scroller-points'>
-          <span>1988</span>
-          <span>2009</span>
-          <span>2016</span>
+  //   const { position } = this.state
+  return (
+    <div className={`${styles.scroller}`}>
+      <div className={`${styles.scrollerLine}`}>
+        <div 
+          className={`${styles.scrollerProgress}`} 
+          style={{width: position, transition: this.state.touchEnd ? '1s': '0s'}}/>
+        <div  
+          className={`${styles.scrollerIcon}`} 
+          style={{transform: `translate(${this.state.position}px, -50%)`, transition: this.state.touchEnd ? '1s': '0s'}} 
+          onTouchStart={Handle.onTouchStart}
+          onTouchMove={Handle.onTouchMove}
+          onTouchEnd={Handle.onTouchEnd}
+          >
         </div>
       </div>
-    )
-  }
+      <div className={`${styles.scrollerPoints}`}>
+        <span>1988</span>
+        <span>2009</span>
+        <span>2016</span>
+      </div>
+    </div>
+  )
   
 }
-
-export default Scroller;
