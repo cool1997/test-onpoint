@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './ThirdSlide.module.scss'
-import { IceBrick } from '../components/IceBrick'
+import { IceBrick } from '../IceBrick/IceBrick'
 
 export const ThirdSlide = props => {
   return (
