@@ -1,0 +1,25 @@
+ .secondSlide {
+  width: 1024px;
+  height: 768px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.secondSlideTitle {
+  font-size: 30px;
+  font-family: 'GothamPro';
+  color: #ffffff;
+  margin-left: 84px;
+  margin-top: 117px;
+}
+
+.secondSlideBox {
+  background: url('../../assets/img/slide-2-box.png');
+  width: 756px;
+  height: 472px;
+  background-size: cover;
+  align-self: center;
+  margin-top: 16px;
+}

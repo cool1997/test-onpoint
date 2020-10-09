@@ -1,0 +1,12 @@
+.App {
+    min-height: 100%;
+    display: flex;
+    max-width: 1024px;
+    max-height: 768px;
+    overflow: hidden;
+  }
+  
+  .main {
+    transition: 1s;
+    width: 100%;
+  }
