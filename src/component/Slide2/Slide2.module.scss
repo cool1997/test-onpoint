@@ -1,0 +1,13 @@
+.Slide2 {
+    background: url('../../assets/img/second-block-bg.png');
+    background-size: cover;
+    padding-top: 256px;
+  
+    & .title {
+      font-family: 'GothamProLight';
+      font-size: 50px;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 0 119px rgba(0, 131, 254, 0.09);
+    }
+  }

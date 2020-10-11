@@ -2,6 +2,7 @@ import React from 'react'
 
 import styles from './IceBrick.module.scss'
 
+
 export const IceBrick = ({ style, top, left, id, ...props }) => {
   const transform = (style) ? style.transform : ''
   const transition = (style) ? style.transition : ''

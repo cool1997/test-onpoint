@@ -1,78 +1,69 @@
-import React, { useState } from 'react'
-// import { Route, Switch } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
 import styles from './App.module.scss'
-import { Navbar } from '../component/Navbar/Navbar'
-import { FirstBlock } from '../component/FirstBlock/FirstBlock'
-import { SecondBlock } from '../component/SecondBlock/SecondBlock'
-import { ThirdBlock } from '../component/ThirdBlock/ThirdBlock'
+import { ToggleItem } from '../component/ToggleItem/ToggleItem'
+import { Slide1 } from '../component/Slide1/Slide1'
+import { Slide2 } from '../component/Slide2/Slide2'
+import { Slide3 } from '../component/Slide3/Slide3'
 
 
-const App = ({ ...props }) => {
-	const [current, setCurrent] = useState(0)
-	// const [translateLayer, setTranslateLayer] = useState(false)
-	const [startTouchY, setStartTouchY] = useState(null)
-	const [EndTouchY, setEndTouchY] = useState(null)
+const App = ({ location, ...props }) => {
+	const [initialize, setInitialize] = useState(false)
+	const [currentSlide, setCurrentSlide] = useState(3)
+	const [startTouch, setStartTouch] = useState(null)
+	const [endTouch, setEndTouch] = useState(null)
+	
+
+	const slideToggleItemsId = [1,2,3]
+
+
+	useEffect(() => {
+		setInitialize(true)
+	}, [])
+
+	useEffect(() => {
+		if (initialize) {
+			if(startTouch - endTouch > 100 && currentSlide < 3) {
+				setCurrentSlide((prev) => prev + 1)
+			} else if(endTouch - startTouch > 100 && currentSlide > 1) {
+				setCurrentSlide((prev) => prev - 1)
+			}
+		}
+	}, [endTouch])
+	
 
 	const Handle = {
-		onTouchStart: (evt) => {
-			setStartTouchY(evt.touches[0].clientY)
-			// setTranslateLayer(false)
+		setStartTouch: (evt) => {
+			//  evt.preventDefault()
+			setStartTouch(evt.touches[0].clientY)
 		},
-		onTouchEnd: (evt) => {
-			setEndTouchY(evt.changedTouches[0].clientY)
-			if(startTouchY - EndTouchY > 50 && current <= 1) {
-				setCurrent((prev) => ++prev)
-			}
-			if(startTouchY - EndTouchY < -50 && current >= 1) {
-				setCurrent((prev) => --prev)
-			}
-			// setTranslateLayer(true)
-		},	
-		onChangeSlide: (evt) => {
-			setCurrent(evt.target.id)
-			// setTranslateLayer(true)
-		},
+		setEndTouch: (evt) => {
+			setEndTouch(evt.changedTouches[0].clientY)
+		}
 	}
 
 
 	return (
-		<div 
-			className={`${styles.App}`}
-			onTouchStart={Handle.onTouchStart}
-			onTouchEnd={Handle.onTouchEnd}>
-			
-			<Navbar 
-				changeSlide={Handle.onChangeSlide} 
-				current={current}/>
+		<div className={`${styles.App}`}>
+			<nav className={`${styles.navbar}`}>
+				{slideToggleItemsId.map((item) => <ToggleItem key={item} setCurrentSlide={setCurrentSlide} id={item} checked={currentSlide == item}/>)}
+			</nav>
 
-			<main 
-				className={`${styles.main}`}
-				style={{transform: `translateY( ${current * -100}%)`}}>
+			<main className={`${styles.main} ${currentSlide == 1 ? styles.activeBtn1 : ``}`}
+				
+				onTouchStart={(evt) => Handle.setStartTouch(evt)}
+				onTouchEnd={(evt) => Handle.setEndTouch(evt)}
+				style={{transform: `translateY( ${(currentSlide - 1) * -100}vh)`}}>
 
-				{
-					// <Switch>
-					// 	<Route path='/slide1' render={() => <FirstBlock id={`slide1`}  translateLayer={translateLayer} current={current}/>} />
-					// 	<Route path='/slide2' render={() => <SecondBlock id={`slide2`}  current={current}/>} />
-					// 	<Route path='/slide3' render={() => <ThirdBlock id={`slide3`} />} />
-					// 	<Route path='/' exact render={() => <FirstBlock />} />
-					// </Switch>
-				}
-
-				<FirstBlock 
-					id={`slide1`} 
-					// translateLayer={translateLayer}
-					current={current}/>
-				<SecondBlock 
-					id={`slide2`} 
-					current={current}/>
-				<ThirdBlock 
-					id={`slide3`}/>
+				<Slide1 className={`${styles.slide}`}/>
+				<Slide2 className={`${styles.slide}`}/>
+				<Slide3 className={`${styles.slide}`}/>
 
 			</main>
 		</div>
 	)
 }
+
 
 
 export default App

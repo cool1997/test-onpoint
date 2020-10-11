@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
-import styles from './ThirdBlock.module.scss'
+import styles from './Slide3.module.scss'
+import { Slider } from '../Slider/Slider'
 import { FirstSlide } from '../FirstSlide/FirstSlide'
 import { SecondSlide } from '../SecondSlide/SecondSlide'
 import { ThirdSlide } from '../ThirdSlide/ThirdSlide'
 import { horizontalScroll } from '../horizontalScroll/horizontalScroll'
-import { Scroller } from '../Scroller/Scroller'
 
-export const ThirdBlock = ({ ...props }) => {
+
+export const Slide3 = ({ ...props }) => {
   const [activeSlide, setActiveSlide] = useState(0)
-  // const [prevSlide, setPrevSlide] = useState(0)
   const [scroller, setScroller] = useState({moveRight: null})
 
 
@@ -32,13 +32,13 @@ export const ThirdBlock = ({ ...props }) => {
 
   
   return (
-    <div className={`${styles.ThirdBlock}`}>
-      <div className={`${styles.slidesWrapper}`}>
+    <section className={`${props.className} ${styles.Slide3}`}>
+      <div className={`${styles.wrapper} slides-wrapper`}>
         <FirstSlide/>
         <SecondSlide/>
         <ThirdSlide/>
       </div>
-      <Scroller changeSlide={() => Handle.onSlideChange()}/>
-    </div>
+      <Slider changeSlide={Handle.onSlideChange}/>
+    </section>
   )
 }

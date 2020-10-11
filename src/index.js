@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {HashRouter} from 'react-router-dom'
 
 import './assets/css/reset.css'
 import './assets/css/fonts.css'
@@ -10,10 +9,14 @@ import './index.scss'
 const render = () => {
   const App = require('./App/App').default
 
+
+  document.addEventListener('touchmove', (evt)=>{
+    evt.preventDefault()
+  }, { passive: false })
+
+
   ReactDOM.render(
-    <HashRouter basename={'https://cool1997.github.io/test-onpoint/'}>
-      <App />
-    </HashRouter>,
+      <App />,
     document.getElementById('root')
   )
 }

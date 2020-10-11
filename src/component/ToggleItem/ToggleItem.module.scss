@@ -1,0 +1,15 @@
+.ToggleItem {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 7px;
+    transition: 1s;
+    background: #ffffff;
+}
+
+input[type='radio']:checked + .ToggleItem {
+    background: #f78b1f;
+}

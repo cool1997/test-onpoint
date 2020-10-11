@@ -1,4 +1,4 @@
-.scroller {
+.Slider {
   position: absolute;
   bottom: 30px;
   width: 100%;
@@ -8,31 +8,31 @@
   align-items: center;
 }
 
-.scroller-line {
+.sliderLine {
   height: 12px;
   width: 618px;
   background-color: rgba(209, 234, 255, .3);
   position: relative;
 }
 
-.scroller-progress {
+.sliderProgress {
   background-color: #d1eaff;
   height: 100%;
   position: absolute;
 }
 
-.scroller-icon {
+.sliderIcon {
   position: absolute;
   width: 44px;
   height: 55px;
-  background: url('../assets/slider-icon.png');
+  background: url('../../assets/img/slider-icon.png');
   background-size: cover;
   transform: translate(0, -50%);
   left: -8px;
   opacity: 1;
 }
 
-.scroller-points {
+.sliderPoints {
   margin-top: 30px;
   font-family: GothamPro;
   width: 618px;

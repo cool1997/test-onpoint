@@ -5,7 +5,7 @@ import { IceBrick } from '../IceBrick/IceBrick'
 
 export const SecondSlide = ({ ...props }) => {
   return (
-    <div className={`${styles.secondSlide} ${styles.horizontalSlide}`}>
+    <div className={`${styles.secondSlide} ${styles.horizontalSlide} horizontal-slide`}>
       <div className={`${styles.secondSlideTitle}`}>
         Смертельный октет
       </div>

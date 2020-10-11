@@ -5,7 +5,7 @@ import { IceBrick } from '../IceBrick/IceBrick'
 
 export const FirstSlide = ({ ...props }) => {
   return (
-    <div className={`${styles.FirstSlide} ${styles.horizontalSlide}`}>
+    <div className={`${styles.FirstSlide} ${styles.horizontalSlide} horizontal-slide`}>
       <div className={`${styles.firstSlideTitle}`}>
         Звенья патогенеза СД2
       </div>
