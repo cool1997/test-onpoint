@@ -32,7 +32,7 @@ export const Slide3 = ({ ...props }) => {
 
   
   return (
-    <section className={`${props.className} ${styles.Slide3}`}>
+    <section className={`${props.className} ${styles.Slide3}`} id={props.id}>
       <div className={`${styles.wrapper} slides-wrapper`}>
         <FirstSlide/>
         <SecondSlide/>
